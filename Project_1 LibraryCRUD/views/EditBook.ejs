@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Edit Book</title>
+</head>
+<style>
+     body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-image: url('https://cdn.pixabay.com/photo/2024/04/19/12/13/ai-generated-8706226_640.png');
+      background-size: cover;
+      background-position: center;
+      color: #333;
+  }
+
+  h1 {
+      color: #fff;
+      text-align: center;
+      margin: 20px 0;
+      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+  }
+
+  form {
+      background-color: rgba(255, 255, 255, 0.9);
+      border-radius: 10px;
+      padding: 20px;
+      margin: 20px auto;
+      max-width: 400px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  form input, form button {
+      width: calc(100% - 20px);
+      margin: 10px auto;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 16px;
+  }
+
+  form button {
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+  }
+
+  form button:hover {
+      background-color: #0056b3;
+  }
+</style>
+<body>
+   <center><h1>The BookStore</h1></center>
+   <form action="/updateBook" method="post">
+      <input hidden type="text" value="<%=singleData.id%>" name="id">
+      <input type="text" value="<%=singleData.book%>" placeholder="Enter Book Name" name="book">
+      <input type="text" value="<%=singleData.auther%>" placeholder="Enter Auther Name" name="auther">
+      <input type="text" value="<%=singleData.publish%>" placeholder="Enter Publish Date" name="publish">
+      <input type="text" value="<%=singleData.price%>" placeholder="Enter Book Price" name="price">
+      </br>
+      <button type="submit">Update Data</button>
+   </form>
+</body>
+</html>
