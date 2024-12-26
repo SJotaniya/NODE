@@ -1,13 +1,13 @@
-const express = require("express")
-const port = 1008
+const express = require("express");
+const port = 1008;
 
-const app = express()
+const app = express();
 
 let students = [
-	{"id" : "1", "name" : "Saurabh", "subject" : "ReactJS"},
-	{"id" : "2", "name" : "Kartik", "subject" : "NodeJS"},
-	{"id" : "3", "name" : "Khushal", "subject" : "Bootstrap"}
-]
+	{ id : "1", name : "Saurabh", subject : "ReactJS"},
+	{ id : "2", name : "Kartik", subject : "NodeJS"},
+	{ id : "3", name : "Khushal", subject : "Bootstrap"}
+];
 
 app.set("view engine", "ejs");
 

@@ -41,6 +41,8 @@ app.post("/updateBook", (req, res)=>{
      		e.id = req.body.id;
      		e.book = req.body.book;
      		e.auther = req.body.auther;
+            e.publish = req.body.publish;
+            e.price = req.body.price;
      	}
      	else{
      	   e
