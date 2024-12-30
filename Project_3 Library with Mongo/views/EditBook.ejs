@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Edit Book</title>
+   <link rel="stylesheet" href="style.css">
+</head>
+<body>
+   <center><h1>The BookStore</h1></center>
+   <form action="/updateBook" method="post">
+      <input hidden type="text" value="<%=data.id%>" name="id">
+      <input type="text" value="<%=data.book%>" placeholder="Enter Book Name" name="book">
+      <input type="text" value="<%=data.auther%>" placeholder="Enter Auther Name" name="auther">
+      <input type="text" value="<%=data.year%>" placeholder="Enter Publish Year" name="year">
+      <input type="text" value="<%=data.price%>" placeholder="Enter Book Price" name="price">
+      </br>
+      <button type="submit">Update Data</button>
+   </form>
+</body>
+</html>

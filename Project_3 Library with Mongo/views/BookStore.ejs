@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Book Store</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <center><h1>The BookStore</h1></center>
+    <form action="/addBook" enctype="multipart/form-data" method="post">
+      <input type="text" placeholder="Enter Book Name" name="book" />
+      <input type="text" placeholder="Enter Auther Name" name="auther" />
+      <input type="text" placeholder="Enter Publish Year" name="year" />
+      <input type="text" placeholder="Enter Book Price" name="price" />
+      <input type="file" name="image"/>
+      <button type="submit">Add Book</button>
+    </form>
+    <br />
+    <table border="1">
+      <thead>
+        <tr>
+          <th>Image</th>
+          <th>Name</th>
+          <th>Auther</th>
+          <th>Publish Year</th>
+          <th>Price</th>
+          <th colspan="2" style="text-align: center">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% data.map((e,i)=>{ %>
+        <tr>
+          <td><img src="<%=e.image%>" alt="Book Image" class="book-image" /></td>
+          <td><%=e.book%></td>
+          <td><%=e.auther%></td>
+          <td><%=e.year%></td>
+          <td><%=e.price%></td>
+          <td>
+            <button><a href="/editBook?id=<%=e.id%>">Edit</a></button>
+            <button><a href="/deleteBook?id=<%=e.id%>">Delete</a></button>
+          </td>
+        </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </body>
+</html>
