@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*{
+  font-family: "Montserrat", serif;
+}
+
+.allCategories {
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+.category{
+  transition-duration: 0.5s;
+  border-bottom: 1px solid #eeecec;
+}
+
+.category:hover{
+  background-color: #eaffee;
+}
+
+
+.div1::-webkit-scrollbar{
+  width: 0px;
+}
+
+.div2::-webkit-scrollbar{
+  width: 0px;
+}
+
+.addCartDiv::-webkit-scrollbar{
+  width: 0px;
+}

@@ -3,6 +3,7 @@ const path = require('path');
 const db = require('./config/db');
 const schema = require('./model/firstSchema');
 const multer = require('multer');
+const fs = require("fs");
 
 const port = 2004;
 const app = express();
@@ -40,13 +41,23 @@ app.get("/editBook", async (req, res) => {
   res.render('EditBook', { data });
 });
 
-app.post('/updateBook', async (req, res) => {
-  await schema.findByIdAndUpdate(req.body.id, req.body).then((data) => {
+app.post('/updateBook',upload, async (req, res) => {
+  let img = "";
+  let singleData = await schema.findById(req.body.id);
+  req.file ? (img = req.file.path) : (img = singleData.image);
+  req.file && fs.unlinkSync(singleData.image);
+  req.body.image = img;
+
+  await schema.findByIdAndUpdate(req.body.id, req.body)
+  .then((data) => {
     res.redirect('/');
   });
 });
 
-app.get('/deleteBook', async (req, res) => {
+app.get('/deleteBook', upload,async (req, res) => {
+  let singleData = await schema.findById(req.query.id);
+  fs.unlinkSync(singleData.image);
+
   await schema.findByIdAndDelete(req.query.id).then((data) => {
     res.redirect('/');
   });
