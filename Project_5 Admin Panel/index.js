@@ -1,15 +1,30 @@
 const express = require('express');
 const port = 1002;
+
 const app = express();
-const cookie = require('cookie-parser');
+
 const mongoose = require('./Config/Database');
 const path = require('path');
+const cookie = require('cookie-parser');
+const session = require('express-session');
+const passport = require('passport');
 
 app.set('view engine', 'ejs');
+app.use(express.urlencoded());
 app.use(express.static('Public'));
-app.use(express.urlencoded())
 app.use('/Uploads', express.static(path.join(__dirname, 'Uploads')));
 app.use(cookie());
+app.use(
+  session({
+    name: 'local',
+    secret: 'rnw',
+    resave: true,
+    saveUninitialized: false,
+    cookie: { maxAge: 100 * 100 * 60 },
+  })
+);
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use('/', require('./Routes/PageRoute'));
 

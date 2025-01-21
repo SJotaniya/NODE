@@ -5,34 +5,32 @@ module.exports.loginPage = (req, res) => {
   res.render('Login');
 };
 module.exports.login = async (req, res) => {
-  let admin = await schema.findOne({ email: req.body.email });
-  if (admin) {
-    if (admin.password == req.body.password) {
-      res.cookie('adminData', admin);
-      res.redirect('/dashboard');
-    } else {
-      res.redirect('/');
-    }
-  }
+
+  res.redirect("/dashboard")
+  // let admin = await schema.findOne({ email: req.body.email });
+  // if (admin) {
+  //   if (admin.password == req.body.password) {
+  //     res.cookie('adminData', admin);
+  //     res.redirect('/dashboard');
+  //   } else {
+  //     res.redirect('/');
+  //   }
+  // }
 };
 
 module.exports.dashboard = (req, res) => {
   // console.log(req.cookies.adminData);
-  req.cookies.adminData ? res.render('Dashboard') : res.redirect('/');
+  res.render('Dashboard')
 };
 module.exports.addAdminPage = (req, res) => {
-  req.cookies.adminData ? res.render('addAdmin') : res.redirect('/');
+  res.render('addAdmin')
 };
 
 module.exports.viewAdminPage = async (req, res) => {
-  if (req.cookies.adminData) {
     let data = await schema.find({}).then((data) => {
       res.render('viewAdmin', { data });
       // console.log(data);
     });
-  } else {
-    res.redirect('/');
-  }
 };
 
 module.exports.addAdmin = async (req, res) => {
@@ -43,13 +41,9 @@ module.exports.addAdmin = async (req, res) => {
 };
 
 module.exports.editData = async (req, res) => {
-  if (req.cookies.adminData) {
     let data = await schema.findById(req.query.id);
     res.render('editData', { data });
     // console.log(data);
-  } else {
-    res.redirect('/');
-  }
 };
 
 module.exports.updateData = async (req, res) => {
@@ -80,6 +74,6 @@ module.exports.deleteAdmin = async (req, res) => {
 };
 
 module.exports.logout = (req, res) => {
-  res.clearCookie('adminData');
+  res.session.destroy();
   res.redirect('/');
 };

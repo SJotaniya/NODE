@@ -46,12 +46,12 @@
                     <tr style="text-align: center; vertical-align: middle;"> 
                       <td class="d-flex justify-content-center"><img src="<%=e.image%>" alt="" style="max-width: 100px; height: auto;"></td> 
                       <td><%=e.name%></td> 
-                      <td><%=e.gender%></td> 
+                      <td><%=e.gender%></td>
                       <td><%=e.cntnum%></td> 
                       <td><%=e.email%></td> 
                       <td><%=e.password%></td> 
-                      <td><a href="/editData?id=<%=e.id%>" ><button class="btn btn-primary">Edit Data</button></a></td> 
-                      <td><a href="/deleteAdmin?id=<%=e.id%>"><button  class="btn btn-danger">Delete User</button></a></td> 
+                      <td><a href="/editData?id=<%=e.id%>" ><button class="btn btn-primary">Edit</button></a></td> 
+                      <td><a href="/deleteAdmin?id=<%=e.id%>"><button  class="btn btn-danger">Delete</button></a></td> 
                     </tr>
                   <%})%>
                 </tbody>
