@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon.png">
+    <title>Add Admin</title>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" type="text/css" href="assets/libs/select2/dist/css/select2.min.css">
+    <link rel="stylesheet" type="text/css" href="assets/libs/jquery-minicolors/jquery.minicolors.css">
+    <link rel="stylesheet" type="text/css" href="assets/libs/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
+    <link rel="stylesheet" type="text/css" href="assets/libs/quill/dist/quill.snow.css">
+    <link href="dist/css/style.min.css" rel="stylesheet">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+</head>
+
+<body>
+    <!-- ============================================================== -->
+    <!-- Preloader - style you can find in spinners.css -->
+    <!-- ============================================================== -->
+    <div class="preloader">
+        <div class="lds-ripple">
+            <div class="lds-pos"></div>
+            <div class="lds-pos"></div>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- Main wrapper - style you can find in pages.scss -->
+    <!-- ============================================================== -->
+    <div id="main-wrapper">
+        <!-- ============================================================== -->
+        <!-- Topbar header - style you can find in pages.scss -->
+        <!-- ============================================================== -->
+        <%-include('Header')%>
+        <!-- ============================================================== -->
+        <!-- End Topbar header -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+        <%-include('Aside')%>
+        <!-- ============================================================== -->
+        <!-- End Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Page wrapper  -->
+        <!-- ============================================================== -->
+        <div class="page-wrapper">
+            <!-- ============================================================== -->
+            <!-- Bread crumb and right sidebar toggle -->
+            <!-- ============================================================== -->
+            <div class="page-breadcrumb">
+                <div class="row">
+                    <div class="col-12 d-flex no-block align-items-center">
+                        <h4 class="page-title">Edit Admin Data</h4>
+                        <div class="ml-auto text-right">
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">Library</li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ============================================================== -->
+            <!-- End Bread crumb and right sidebar toggle -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- Container fluid  -->
+            <!-- ============================================================== -->
+            <div class="container-fluid">
+              <!-- ============================================================== -->
+              <!-- Start Page Content -->
+              <!-- ============================================================== -->
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="card">
+                    <form action="/editAdmin" method="post" enctype="multipart/form-data" class="form-horizontal" onsubmit="return validatePasswords()">
+                      <div class="card-body">
+                        <h4 class="card-title">Personal Info</h4>
+                        <!-- Name -->
+                        <div class="form-group row">
+                          <label for="fname" class="col-sm-4 control-label col-form-label">Name</label>
+                          <div class="col-sm-8">
+                            <input type="text" name="name" value="<%=data.name%>"  class="form-control" id="fname" placeholder="Name Here" required>
+                          </div>
+                        </div>
+                        <!-- Birth Date -->
+                        <div class="input-group row">
+                          <div class="input-group">
+                            <label class="col-sm-4 control-label col-form-label">Birth Date</label>
+                            <input type="text" name="date" value="<%=data.date%>" class="form-control mx-3 mb-3" id="datepicker-autoclose" placeholder="DD/MM/YYYY">
+                            <div class="input-group-append">
+                              <span class="input-group-text mb-3"><i class="fa fa-calendar"></i></span>
+                            </div>
+                        </div>
+                        </div>
+                        <!-- Gender -->
+                        <div class="form-group row">
+                          <label class="col-sm-4 control-label col-form-label">Gender</label>                          <div class="col-sm-8">
+                            <div class="custom-control custom-radio">
+                              <input type="radio" class="custom-control-input" id="customControlValidation1" name="gender" value="Male" required>
+                              <label class="custom-control-label" for="customControlValidation1">Male</label>
+                            </div>
+                            <div class="custom-control custom-radio">
+                              <input type="radio" class="custom-control-input" id="customControlValidation2" name="gender" value="Female" required>
+                              <label class="custom-control-label" for="customControlValidation2">Female</label>
+                            </div>
+                            <div class="custom-control custom-radio">
+                              <input type="radio" class="custom-control-input" id="customControlValidation3" name="gender" value="Other" required>
+                              <label class="custom-control-label" for="customControlValidation3">Other</label>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- Country -->
+                        <div class="form-group row">
+                          <label class="col-sm-4 mt-2">Country</label>
+                          <div class="col-sm-8">
+                            <select class="select2 form-control custom-select" name="country" style="width: 100%; height:36px;" required>
+                              <option>Select</option>
+                              <optgroup label="Africa">
+                                <option value="Nigeria">Nigeria</option>
+                                <option value="Egypt">Egypt</option>
+                                <option value="South Africa">South Africa</option>
+                                <option value="Kenya">Kenya</option>
+                                <option value="Algeria">Algeria</option>
+                                <option value="Morocco">Morocco</option>
+                              </optgroup>
+                              <optgroup label="Asia">
+                                <option value="India">India</option>
+                                <option value="China">China</option>
+                                <option value="Japan">Japan</option>
+                                <option value="South Korea">South Korea</option>
+                                <option value="Indonesia">Indonesia</option>
+                                <option value="Russia">Russia</option>
+                              </optgroup>
+                              <optgroup label="Europe">
+                                <option value="Germany">Germany</option>
+                                <option value="France">France</option>
+                                <option value="United Kingdom">United Kingdom</option>
+                                <option value="Italy">Italy</option>
+                                <option value="Spain">Spain</option>
+                                <option value="Netherlands">Netherlands</option>
+                              </optgroup>
+                              <optgroup label="North America">
+                                <option value="United States">United States</option>
+                                <option value="Canada">Canada</option>
+                                <option value="Mexico">Mexico</option>
+                                <option value="Cuba">Cuba</option>
+                                <option value="Guatemala">Guatemala</option>
+                                <option value="Haiti">Haiti</option>
+                              </optgroup>
+                              <optgroup label="South America">
+                                <option value="Brazil">Brazil</option>
+                                <option value="Argentina">Argentina</option>
+                                <option value="Colombia">Colombia</option>
+                                <option value="Chile">Chile</option>
+                                <option value="Peru">Peru</option>
+                                <option value="Ecuador">Ecuador</option>
+                              </optgroup>
+                              <optgroup label="Oceania">
+                                <option value="Australia">Australia</option>
+                                <option value="New Zealand">New Zealand</option>
+                                <option value="Papua New Guinea">Papua New Guinea</option>
+                                <option value="Fiji">Fiji</option>
+                                <option value="Samoa">Samoa</option>
+                                <option value="Tonga">Tonga</option>
+                              </optgroup>
+                            </select>
+                          </div>
+                        </div>
+                        <!-- Known Languages -->
+                        <div class="form-group row">
+                          <label class="col-sm-4 m-t-10">Known Languages</label>
+                          <div class="col-sm-8">
+                            <select name="languages" class="select2 form-control m-t-15" multiple="multiple" style="height: 30px;width: 100%;" required>
+                              <optgroup label="Languages">
+                                <option value="Arabic">Arabic</option>
+                                <option value="Chinese">Chinese</option>
+                                <option value="English">English</option>
+                                <option value="French">French</option>
+                                <option value="Gujarati">Gujarati</option>
+                                <option value="Hindi">Hindi</option>
+                                <option value="Marathi">Marathi</option>
+                                <option value="Punjabi">Punjabi</option>
+                                <option value="Russian">Russian</option>
+                                <option value="Spanish">Spanish</option>
+                                <option value="Tamil">Tamil</option>
+                                <option value="Telugu">Telugu</option>
+                              </optgroup>
+                            </select>
+                          </div>
+                        </div>
+                        <!-- Contact Number -->
+                        <div class="form-group row">
+                          <label for="lname" class="col-sm-4 control-label col-form-label">Contact No.</label>
+                          <div class="col-sm-8">
+                            <input type="tel" inputmode="numeric" oninput="this.value = this.value.replace(/[^0-9+]/g, '')" maxlength="10" name="cntnum" id="lname" class="form-control" placeholder="Mobile Number" required>
+                          </div>
+                        </div>
+                        <!-- Email -->
+                        <div class="form-group row">
+                          <label for="lname" class="col-sm-4 control-label col-form-label">Email</label>
+                          <div class="col-sm-8">
+                            <input type="email" class="form-control" id="lname" name="email" placeholder="Email Here" required>
+                          </div>
+                        </div>
+                        <!-- Password -->
+                        <div class="form-group row">
+                          <label for="lname" class="col-sm-4 control-label col-form-label">Password</label>
+                          <div class="col-sm-8">
+                            <input type="password" class="form-control" id="password" name="password" placeholder="Password Here" required>
+                          </div>
+                        </div>
+                        <!-- Confirm Password -->
+                        <div class="form-group row">
+                          <label for="lname" class="col-sm-4 control-label col-form-label">Confirm Password</label>
+                          <div class="col-sm-8">
+                            <input type="password" class="form-control" id="confirmPassword" name="cnfpassword" placeholder="Confirm Password" required>
+                          </div>
+                        </div>
+                        <!-- Upload Photo -->
+                        <div class="form-group row">
+                          <label class="col-sm-4">Upload Photo</label>
+                          <div class="col-sm-8">
+                            <div class="custom-file">
+                              <input type="file" name="image" class="custom-file-input" id="validatedCustomFile">
+                              <label class="custom-file-label" for="validatedCustomFile">Choose file...</label>
+                              <div class="invalid-feedback">Example invalid custom file feedback</div>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- Submit Button -->
+                        <div class="border-top">
+                          <div class="card-body">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                          </div>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+                <!-- editor -->
+                <!-- ============================================================== -->
+                <!-- End PAge Content -->
+                <!-- ============================================================== -->
+                <!-- ============================================================== -->
+                <!-- Right sidebar -->
+                <!-- ============================================================== -->
+                <!-- .right-sidebar -->
+                <!-- ============================================================== -->
+                <!-- End Right sidebar -->
+                <!-- ============================================================== -->
+            </div>
+            <!-- ============================================================== -->
+            <!-- End Container fluid  -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- footer -->
+            <!-- ============================================================== -->
+            <footer class="footer text-center">
+                All Rights Reserved by Matrix-admin. Designed and Developed by <a href="https://wrappixel.com">WrapPixel</a>.
+            </footer>
+            <!-- ============================================================== -->
+            <!-- End footer -->
+            <!-- ============================================================== -->
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Page wrapper  -->
+        <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Wrapper -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- All Jquery -->
+    <!-- ============================================================== -->
+    <script src="assets/libs/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap tether Core JavaScript -->
+    <script src="assets/libs/popper.js/dist/umd/popper.min.js"></script>
+    <script src="assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- slimscrollbar scrollbar JavaScript -->
+    <script src="assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
+    <script src="assets/extra-libs/sparkline/sparkline.js"></script>
+    <!--Wave Effects -->
+    <script src="dist/js/waves.js"></script>
+    <!--Menu sidebar -->
+    <script src="dist/js/sidebarmenu.js"></script>
+    <!--Custom JavaScript -->
+    <script src="dist/js/custom.min.js"></script>
+    <!-- This Page JS -->
+    <script src="assets/libs/inputmask/dist/min/jquery.inputmask.bundle.min.js"></script>
+    <script src="dist/js/pages/mask/mask.init.js"></script>
+    <script src="assets/libs/select2/dist/js/select2.full.min.js"></script>
+    <script src="assets/libs/select2/dist/js/select2.min.js"></script>
+    <script src="assets/libs/jquery-asColor/dist/jquery-asColor.min.js"></script>
+    <script src="assets/libs/jquery-asGradient/dist/jquery-asGradient.js"></script>
+    <script src="assets/libs/jquery-asColorPicker/dist/jquery-asColorPicker.min.js"></script>
+    <script src="assets/libs/jquery-minicolors/jquery.minicolors.min.js"></script>
+    <script src="assets/libs/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+    <script src="assets/libs/quill/dist/quill.min.js"></script>
+    <script>
+      //***********************************//
+      // For select 2
+      //***********************************//
+      $(".select2").select2();
+      /*colorpicker*/
+      $('.demo').each(function() {
+      //
+      // Dear reader, it's actually very easy to initialize MiniColors. For example:
+      //
+      //  $(selector).minicolors();
+      //
+      // The way I've done it below is just for the demo, so don't get confused
+      // by it. Also, data- attributes aren't supported at this time...they're
+      // only used for this demo.
+      //
+      $(this).minicolors({
+              control: $(this).attr('data-control') || 'hue',
+              position: $(this).attr('data-position') || 'bottom left',
+              change: function(value, opacity) {
+                  if (!value) return;
+                  if (opacity) value += ', ' + opacity;
+                  if (typeof console === 'object') {
+                      console.log(value);
+                  }
+              },
+              theme: 'bootstrap'
+          });
+      });
+      /*datwpicker*/
+      jQuery('.mydatepicker').datepicker();
+      jQuery('#datepicker-autoclose').datepicker({
+        format: "dd/mm/yyyy",
+        autoclose: true,
+        todayHighlight: true
+      });
+
+      var quill = new Quill('#editor', {
+          theme: 'snow'
+      });
+
+      function validatePasswords() {
+        var password = document.getElementById("password").value;
+        var confirmPassword = document.getElementById("confirmPassword").value
+        if (password !== confirmPassword) {
+          alert("Passwords do not match!");
+          return false; // Prevent form submission
+        }
+        return true; // Allow form submission
+      }
+    </script>
+</body>
+
+</html>

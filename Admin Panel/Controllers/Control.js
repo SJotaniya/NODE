@@ -23,5 +23,6 @@ module.exports.addAdmin = async (req, res) => {
 };
 
 module.exports.updateData = async (req, res) => {
-  
+  let data = await schema.findById(req.query.id);
+  res.render('editAdmin', { data });
 }
